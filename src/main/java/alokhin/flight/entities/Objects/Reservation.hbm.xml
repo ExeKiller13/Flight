@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="alokhin.flight.entities.Objects.Reservation" table="reservation" schema="avia">
+        <id name="id" type="java.lang.Long">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="alokhin.flight.entities.Objects.Flight" fetch="join" name="flight" lazy="false">
+            <column name="flight_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="alokhin.flight.entities.Objects.Passenger" fetch="join" name="passenger" lazy="false">
+            <column name="passenger_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="alokhin.flight.entities.Directories.Place" fetch="join" name="place" lazy="false">
+            <column name="place_id" not-null="true"/>
+        </many-to-one>
+        <property name="addInfo" type="string">
+            <column name="add_info"/>
+        </property>
+        <property name="reserveDatetime" type="java.util.Calendar">
+            <column name="reserve_datetime" not-null="true"/>
+        </property>
+        <property name="code" type="java.lang.String">
+            <column name="code" not-null="true" unique="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

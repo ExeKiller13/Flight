@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="alokhin.flight.entities.Objects.Flight" table="flight" schema="avia">
+        <id name="id" type="java.lang.Long">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="code" type="string">
+            <column name="code" not-null="true" unique="true"/>
+        </property>
+        <property name="flightDate" type="java.util.Calendar">
+            <column name="flight_date" not-null="true"/>
+        </property>
+        <property name="flightTime" type="java.util.Calendar">
+            <column name="flight_time" not-null="true"/>
+        </property>
+        <many-to-one class="alokhin.flight.entities.Directories.Aircraft" fetch="join" name="aircraft" lazy="false">
+            <column name="aircraft_id" not-null="true"/>
+        </many-to-one>
+        <property name="duration" type="java.lang.Long">
+            <column name="duration" not-null="true"/>
+        </property>
+        <many-to-one class="alokhin.flight.entities.Directories.City" fetch="join" name="cityFrom" lazy="false">
+            <column name="city_from_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="alokhin.flight.entities.Directories.City" fetch="join" name="cityTo" lazy="false">
+            <column name="city_to_id" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

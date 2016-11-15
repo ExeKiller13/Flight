@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="alokhin.flight.entities.Objects.Passenger" table="passenger" schema="avia">
+        <id name="id" column="id"/>
+        <property name="givenName" column="given_name"/>
+        <property name="middleName" column="middle_name"/>
+        <property name="familyName" column="family_name"/>
+        <property name="documentNumber" column="document_number"/>
+        <property name="email" column="email"/>
+        <property name="phone" column="phone"/>
+    </class>
+</hibernate-mapping>

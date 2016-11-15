@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="alokhin.flight.entities.Directories.Place" table="spr_place" schema="avia">
+        <id name="id" type="java.lang.Long">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="row" type="string">
+            <column name="row" not-null="true"/>
+        </property>
+        <property name="seat" type="java.lang.Integer">
+            <column name="seat" not-null="true"/>
+        </property>
+        <many-to-one class="alokhin.flight.entities.Directories.FlightClass" fetch="join" name="flightClass" lazy="false">
+            <column name="flight_class_id" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

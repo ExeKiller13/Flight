@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="alokhin.flight.entities.Directories.City" table="spr_city" schema="avia">
+        <id name="id" type="java.lang.Long">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column name="name" not-null="true"/>
+        </property>
+        <many-to-one class="alokhin.flight.entities.Directories.Country" fetch="join" name="country" lazy="false">
+            <column name="country_id" not-null="true"/>
+        </many-to-one>
+        <property name="code" type="string">
+            <column name="code"/>
+        </property>
+        <property name="desc" type="string">
+            <column name="desc"/>
+        </property>
+    </class>
+</hibernate-mapping>
