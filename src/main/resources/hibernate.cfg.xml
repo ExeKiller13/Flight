@@ -4,18 +4,25 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url">jdbc:mysql://localhost:3306/avia</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <mapping resource="alokhin/flight/entities/Objects/Flight.hbm.xml"/>
-    <mapping resource="alokhin/flight/entities/Objects/Passenger.hbm.xml"/>
-    <mapping resource="alokhin/flight/entities/Objects/Reservation.hbm.xml"/>
-    <mapping resource="alokhin/flight/entities/Directories/Aircraft.hbm.xml"/>
-    <mapping resource="alokhin/flight/entities/Directories/AircraftPlace.hbm.xml"/>
-    <mapping resource="alokhin/flight/entities/Directories/City.hbm.xml"/>
-    <mapping resource="alokhin/flight/entities/Directories/Company.hbm.xml"/>
-    <mapping resource="alokhin/flight/entities/Directories/Country.hbm.xml"/>
-    <mapping resource="alokhin/flight/entities/Directories/FlightClass.hbm.xml"/>
-    <mapping resource="alokhin/flight/entities/Directories/Place.hbm.xml"/>
+    <property name="connection.url">jdbc:mysql://localhost:3306/avia</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+
+    <property name="connection.username">root</property>
+    <property name="connection.password">root</property>
+
+    <mapping resource="alokhin.flight.entities/Flight.hbm.xml"/>
+    <mapping resource="alokhin.flight.entities/Passenger.hbm.xml"/>
+    <mapping resource="alokhin.flight.entities/Reservation.hbm.xml"/>
+    <mapping resource="alokhin.flight.entities/Aircraft.hbm.xml"/>
+    <mapping resource="alokhin.flight.entities/AircraftPlace.hbm.xml"/>
+    <mapping resource="alokhin.flight.entities/City.hbm.xml"/>
+    <mapping resource="alokhin.flight.entities/Company.hbm.xml"/>
+    <mapping resource="alokhin.flight.entities/Country.hbm.xml"/>
+    <mapping resource="alokhin.flight.entities/FlightClass.hbm.xml"/>
+    <mapping resource="alokhin.flight.entities/Place.hbm.xml"/>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
