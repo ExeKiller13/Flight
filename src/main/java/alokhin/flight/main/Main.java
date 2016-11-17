@@ -1,24 +1,23 @@
 package alokhin.flight.main;
 
+import alokhin.flight.database.DataHelper;
 import alokhin.flight.entities.Directories.Aircraft;
 import alokhin.flight.entities.Directories.City;
+import alokhin.flight.entities.Directories.Country;
+import alokhin.flight.entities.Directories.Place;
 import alokhin.flight.utils.HibernateUtil;
+import javafx.scene.chart.PieChart;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Created by ExeKiller on 15.11.2016.
- */
 public class Main {
     public static void main(String[] args) {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        System.out.println(session);
-        ArrayList<Aircraft> aircrafts = (ArrayList<Aircraft>) session.createCriteria(Aircraft.class).list();
 
+
+        ArrayList<Aircraft> aircrafts = (ArrayList<Aircraft>) DataHelper.getInstance().getAllAircrafts();
         for(Aircraft a : aircrafts) {
             System.out.println("--------------------");
             System.out.println("Id - " + a.getId());
@@ -27,18 +26,18 @@ public class Main {
             System.out.println("Desc - " + a.getDesc());
             System.out.println("--------------------");
         }
-        session.close();
-        Session session2 = sessionFactory.openSession();
-        session2.beginTransaction();
-        System.out.println(session);
-        ArrayList<City> cities = (ArrayList<City>) session2.createCriteria(City.class).list();
 
-        for(City c : cities) {
+        ArrayList<Place> places = (ArrayList<Place>) DataHelper.getInstance().getPlacesByAircraftId(2);
+        for(Place p : places) {
             System.out.println("--------------------");
-            System.out.println("Id - " + c.getId());
-            System.out.println("Name - " + c.getName());
+            System.out.println("Id - " + p.getId());
+            System.out.println("Row - " + p.getRow());
+            System.out.println("Seat - " + p.getSeat());
             System.out.println("--------------------");
         }
-        session2.close();
+
+
+        DataHelper.closeTransaction();
+
     }
 }
