@@ -1,6 +1,7 @@
 package alokhin.flight.database;
 
 import alokhin.flight.entities.Directories.*;
+import alokhin.flight.entities.Objects.*;
 import alokhin.flight.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -115,4 +116,12 @@ public class DataHelper {
                 .addOrder(Order.asc("row")).list();
     }
 
+
+    public List getAllFlights() {
+        return getSession().createCriteria(Flight.class).list();
+    }
+
+    public Flight getFlightById(Long id) {
+        return (Flight) getSession().createCriteria(Flight.class).add(Restrictions.eq("id", id)).uniqueResult();
+    }
 }

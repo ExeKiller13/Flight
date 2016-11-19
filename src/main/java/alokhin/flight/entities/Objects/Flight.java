@@ -8,10 +8,9 @@ import java.util.Calendar;
 public class Flight {
     private Long id;
     private String code;
-    private Calendar flightDate;
-    private Calendar flightTime;
+    private Long dateDepart;
+    private Long dateCome;
     private Aircraft aircraft;
-    private Long duration;
     private City cityFrom;
     private City cityTo;
 
@@ -31,20 +30,32 @@ public class Flight {
         this.code = code;
     }
 
-    public Calendar getFlightDate() {
-        return flightDate;
+    public Long getDateDepart() {
+        return dateDepart;
     }
 
-    public void setFlightDate(Calendar flightDate) {
-        this.flightDate = flightDate;
+    public Long getDateCome() {
+        return dateCome;
     }
 
-    public Calendar getFlightTime() {
-        return flightTime;
+    public Calendar getDateDepartCalendar() {
+        Calendar dateDepart = Calendar.getInstance();
+        dateDepart.setTimeInMillis(this.dateDepart);
+        return dateDepart;
     }
 
-    public void setFlightTime(Calendar flightTime) {
-        this.flightTime = flightTime;
+    public void setDateDepart(Long dateDepart) {
+        this.dateDepart = dateDepart;
+    }
+
+    public Calendar getDateComeCalendar() {
+        Calendar dateCome = Calendar.getInstance();
+        dateCome.setTimeInMillis(this.dateCome);
+        return dateCome;
+    }
+
+    public void setDateCome(Long dateCome) {
+        this.dateCome = dateCome;
     }
 
     public Aircraft getAircraft() {
@@ -53,14 +64,6 @@ public class Flight {
 
     public void setAircraft(Aircraft aircraft) {
         this.aircraft = aircraft;
-    }
-
-    public Long getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Long duration) {
-        this.duration = duration;
     }
 
     public City getCityFrom() {
@@ -87,10 +90,9 @@ public class Flight {
         Flight flight = (Flight) o;
 
         if (id.equals(flight.id)) return false;
-        if (flightDate.equals(flight.flightDate)) return false;
-        if (flightTime.equals(flight.flightTime)) return false;
-        if (!aircraft.equals(flight.aircraft)) return false;
-        if (duration.equals(flight.duration)) return false;
+        if (dateDepart.equals(flight.dateDepart)) return false;
+        if (dateCome.equals(flight.dateCome)) return false;
+        if (aircraft.equals(flight.aircraft)) return false;
         if (cityFrom.equals(flight.cityFrom)) return false;
         if (cityTo.equals(flight.cityTo)) return false;
         if (code != null ? !code.equals(flight.code) : flight.code != null) return false;
@@ -102,12 +104,11 @@ public class Flight {
     public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + (code != null ? code.hashCode() : 0);
-        result = 31 * result + (flightDate.hashCode());
-        result = 31 * result + (flightTime.hashCode());
-        result = 31 * result + (aircraft.hashCode());
-        result = 31 * result + (duration.hashCode());
-        result = 31 * result + (cityFrom.hashCode());
-        result = 31 * result + (cityTo.hashCode());
+        result = 31 * result + dateDepart.hashCode();
+        result = 31 * result + dateCome.hashCode();
+        result = 31 * result + aircraft.hashCode();
+        result = 31 * result + cityFrom.hashCode();
+        result = 31 * result + cityTo.hashCode();
         return result;
     }
 }

@@ -2,13 +2,7 @@ package alokhin.flight.main;
 
 import alokhin.flight.database.DataHelper;
 import alokhin.flight.entities.Directories.Aircraft;
-import alokhin.flight.entities.Directories.City;
-import alokhin.flight.entities.Directories.Country;
 import alokhin.flight.entities.Directories.Place;
-import alokhin.flight.utils.HibernateUtil;
-import javafx.scene.chart.PieChart;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +30,10 @@ public class Main {
             System.out.println("--------------------");
         }
 
+        System.out.println(DataHelper.getInstance().getAllFlights());
 
+
+//        System.out.println(DataHelper.getInstance().getAllCities());
         DataHelper.closeTransaction();
 
     }

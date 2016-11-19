@@ -4,16 +4,13 @@ import alokhin.flight.entities.Directories.Place;
 
 import java.util.Calendar;
 
-/**
- * Created by ExeKiller on 14.11.2016.
- */
 public class Reservation {
     private Long id;
     private Flight flight;
     private Passenger passenger;
     private Place place;
     private String addInfo;
-    private Calendar reserveDatetime;
+    private Long reserveDatetime;
     private String code;
 
     public Long getId() {
@@ -56,11 +53,17 @@ public class Reservation {
         this.addInfo = addInfo;
     }
 
-    public Calendar getReserveDatetime() {
+    public Long getReserveDatetime() {
         return reserveDatetime;
     }
 
-    public void setReserveDatetime(Calendar reserveDatetime) {
+    public Calendar getReserveDatetimeCalendar() {
+        Calendar reserveDatetime = Calendar.getInstance();
+        reserveDatetime.setTimeInMillis(this.reserveDatetime);
+        return reserveDatetime;
+    }
+
+    public void setReserveDatetime(Long reserveDatetime) {
         this.reserveDatetime = reserveDatetime;
     }
 

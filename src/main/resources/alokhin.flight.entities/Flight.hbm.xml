@@ -10,25 +10,23 @@
             <generator class="identity"/>
         </id>
         <property name="code" type="string">
-            <column name="code" not-null="true" unique="true"/>
+            <column name="code" not-null="true"/>
         </property>
-        <property name="flightDate" type="java.util.Calendar">
-            <column name="flight_date" not-null="true"/>
+        <property name="dateDepart" type="java.lang.Long">
+            <column name="date_depart" not-null="true"/>
         </property>
-        <property name="flightTime" type="java.util.Calendar">
-            <column name="flight_time" not-null="true"/>
+        <property name="dateCome" type="java.lang.Long">
+            <column name="date_come" not-null="true"/>
         </property>
         <many-to-one class="alokhin.flight.entities.Directories.Aircraft" fetch="join" name="aircraft" lazy="false">
             <column name="aircraft_id" not-null="true"/>
         </many-to-one>
-        <property name="duration" type="java.lang.Long">
-            <column name="duration" not-null="true"/>
-        </property>
         <many-to-one class="alokhin.flight.entities.Directories.City" fetch="join" name="cityFrom" lazy="false">
             <column name="city_from_id" not-null="true"/>
         </many-to-one>
         <many-to-one class="alokhin.flight.entities.Directories.City" fetch="join" name="cityTo" lazy="false">
             <column name="city_to_id" not-null="true"/>
         </many-to-one>
+
     </class>
 </hibernate-mapping>

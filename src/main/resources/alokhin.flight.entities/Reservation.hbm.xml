@@ -21,7 +21,7 @@
         <property name="addInfo" type="string">
             <column name="add_info"/>
         </property>
-        <property name="reserveDatetime" type="java.util.Calendar">
+        <property name="reserveDatetime" type="java.lang.Long">
             <column name="reserve_datetime" not-null="true"/>
         </property>
         <property name="code" type="java.lang.String">
