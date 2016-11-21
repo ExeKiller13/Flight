@@ -2,6 +2,7 @@ package alokhin.flight.database;
 
 import alokhin.flight.entities.Directories.*;
 import alokhin.flight.entities.Objects.*;
+import alokhin.flight.utils.GMTCalendar;
 import alokhin.flight.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,6 +11,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DataHelper {
@@ -123,5 +125,28 @@ public class DataHelper {
 
     public Flight getFlightById(Long id) {
         return (Flight) getSession().createCriteria(Flight.class).add(Restrictions.eq("id", id)).uniqueResult();
+    }
+
+    public List getFlight(Long dateTime, City cityFrom, City cityTo) {
+
+        Calendar searchDate = GMTCalendar.getInstance();
+        searchDate.setTimeInMillis(dateTime);
+        searchDate.set(Calendar.HOUR_OF_DAY, 0);
+        searchDate.set(Calendar.MINUTE, 0);
+        searchDate.set(Calendar.SECOND, 0);
+        searchDate.set(Calendar.MILLISECOND, 0);
+
+        Calendar dateTimeInterval = (Calendar)(searchDate.clone());
+        int INTERVAL = 6;
+        dateTimeInterval.add(Calendar.DATE, INTERVAL);
+
+        GMTCalendar.print(searchDate);
+        GMTCalendar.print(dateTimeInterval);
+
+        return getSession().createCriteria(Flight.class)
+                .add(Restrictions.and(Restrictions.ge("dateDepart", searchDate.getTimeInMillis()), Restrictions.lt("dateCome", dateTimeInterval.getTimeInMillis())))
+                .add(Restrictions.eq("cityFrom", cityFrom))
+                .add(Restrictions.eq("cityTo", cityTo))
+                .list();
     }
 }

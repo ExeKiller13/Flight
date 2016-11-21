@@ -3,6 +3,7 @@ package alokhin.flight.main;
 import alokhin.flight.database.DataHelper;
 import alokhin.flight.entities.Directories.Aircraft;
 import alokhin.flight.entities.Directories.Place;
+import alokhin.flight.entities.Objects.Flight;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +31,14 @@ public class Main {
             System.out.println("--------------------");
         }
 
-        System.out.println(DataHelper.getInstance().getAllFlights());
+//        System.out.println(DataHelper.getInstance().getAllFlights());
 
+        ArrayList<Flight> arrayList = (ArrayList<Flight>) DataHelper.getInstance().getFlight(1479591900000L,
+                DataHelper.getInstance().getCityById(1L),
+                DataHelper.getInstance().getCityById(2L));
+//        System.out.println("Dur 2 - " + ((ArrayList<Flight>) DataHelper.getInstance().getFlight(1479741300000L,
+//                DataHelper.getInstance().getCityById(3L),
+//                DataHelper.getInstance().getCityById(2L))).get(0).getDuration());
 
 //        System.out.println(DataHelper.getInstance().getAllCities());
         DataHelper.closeTransaction();

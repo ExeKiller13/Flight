@@ -6,6 +6,8 @@ import alokhin.flight.entities.Directories.City;
 import java.util.Calendar;
 
 public class Flight {
+    String duration;
+
     private Long id;
     private String code;
     private Long dateDepart;
@@ -80,6 +82,47 @@ public class Flight {
 
     public void setCityTo(City cityTo) {
         this.cityTo = cityTo;
+    }
+
+    public String getDuration() {
+        if(duration == null) {
+            fillDuration();
+        }
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    private static final String MIN = " min.";
+    private static final String HOUR = " hours.  ";
+    private static final String DAY = " days.  ";
+
+    private void fillDuration() {
+
+        StringBuilder resultString = new StringBuilder();
+
+        long diff = getDateCome() - getDateDepart();
+        int diffmin = (int) (diff / (60 * 1000));
+
+        int num_hours = (diffmin - (diffmin%60))/60;
+        int num_minutes = (diffmin%60);
+        int num_days = (num_hours - (num_hours%24))/24;
+
+        num_hours = (num_hours%24);
+
+        if(num_days > 0) {
+            resultString.append(num_days + DAY);
+        }
+        if(num_hours > 0) {
+            resultString.append(num_hours + HOUR);
+        }
+        if(num_minutes > 0) {
+            resultString.append(num_minutes + MIN);
+        }
+
+        setDuration(resultString.toString());
     }
 
     @Override
