@@ -20,6 +20,8 @@ public class DataHelper {
     private static SessionFactory sessionFactory = null;
     private static DetachedCriteria currentCriteria;
 
+    public static final int INTERVAL = 1;
+
     private DataHelper() {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
@@ -127,17 +129,14 @@ public class DataHelper {
         return (Flight) getSession().createCriteria(Flight.class).add(Restrictions.eq("id", id)).uniqueResult();
     }
 
+
     public List getFlight(Long dateTime, City cityFrom, City cityTo) {
 
         Calendar searchDate = GMTCalendar.getInstance();
         searchDate.setTimeInMillis(dateTime);
-        searchDate.set(Calendar.HOUR_OF_DAY, 0);
-        searchDate.set(Calendar.MINUTE, 0);
-        searchDate.set(Calendar.SECOND, 0);
-        searchDate.set(Calendar.MILLISECOND, 0);
+        GMTCalendar.clearTime(searchDate);
 
         Calendar dateTimeInterval = (Calendar)(searchDate.clone());
-        int INTERVAL = 6;
         dateTimeInterval.add(Calendar.DATE, INTERVAL);
 
         GMTCalendar.print(searchDate);
@@ -148,5 +147,62 @@ public class DataHelper {
                 .add(Restrictions.eq("cityFrom", cityFrom))
                 .add(Restrictions.eq("cityTo", cityTo))
                 .list();
+    }
+
+    public List getAllPassengers() {
+        return getSession().createCriteria(Passenger.class).list();
+    }
+
+    public Passenger getPassengerById(Long id) {
+        return (Passenger) getSession().createCriteria(Passenger.class).add(Restrictions.eq("id", id)).uniqueResult();
+    }
+
+    public void insertPassenger(Passenger passenger) {
+        getSession().save(passenger);
+    }
+
+    public List getAllReservations() {
+        return getSession().createCriteria(Reservation.class).list();
+    }
+
+    public Reservation getReservationById(Long id) {
+        return (Reservation) getSession().createCriteria(Reservation.class).add(Restrictions.eq("id", id)).uniqueResult();
+    }
+
+    public void insertReservation(Reservation reservation) {
+        getSession().save(reservation);
+    }
+
+    public List getReservationsByFamilyName(String familyName) {
+        return  getSession().createCriteria(Reservation.class).
+                createCriteria("passenger").
+                add(Restrictions.eq("familyName", familyName)).
+                list();
+    }
+
+    public Reservation getReservationByCode(String code) {
+        return (Reservation) getSession().createCriteria(Reservation.class).add(Restrictions.eq("code", code)).uniqueResult();
+    }
+
+    public List getReservationsByDate(Long date) {
+        Calendar reservationDate = GMTCalendar.getInstance();
+        reservationDate.setTimeInMillis(date);
+        GMTCalendar.clearTime(reservationDate);
+        Calendar dateTimeInterval = (Calendar) (reservationDate.clone());
+        dateTimeInterval.add(Calendar.DATE, INTERVAL);
+
+        return getSession().createCriteria(Reservation.class).add(
+                Restrictions.and(
+                        Restrictions.ge("reserveDatetime", reservationDate.getTimeInMillis()),
+                        Restrictions.lt("reserveDatetime", dateTimeInterval.getTimeInMillis())
+                )
+        ).list();
+    }
+
+    public List getReservationsByDocumentNumber(String documentNumber) {
+        return  getSession().createCriteria(Reservation.class).
+                createCriteria("passenger").
+                add(Restrictions.eq("documentNumber", documentNumber)).
+                list();
     }
 }

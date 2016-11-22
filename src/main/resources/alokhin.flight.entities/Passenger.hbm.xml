@@ -5,12 +5,27 @@
 <hibernate-mapping>
 
     <class name="alokhin.flight.entities.Objects.Passenger" table="passenger" schema="avia">
-        <id name="id" column="id"/>
-        <property name="givenName" column="given_name"/>
-        <property name="middleName" column="middle_name"/>
-        <property name="familyName" column="family_name"/>
-        <property name="documentNumber" column="document_number"/>
-        <property name="email" column="email"/>
-        <property name="phone" column="phone"/>
+        <id name="id" type="java.lang.Long">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="givenName" type="string">
+            <column name="given_name" not-null="true"/>
+        </property>
+        <property name="middleName" type="string">
+            <column name="middle_name"/>
+        </property>
+        <property name="familyName" type="string">
+            <column name="family_name" not-null="true"/>
+        </property>
+        <property name="documentNumber" type="string">
+            <column name="document_number" not-null="true"/>
+        </property>
+        <property name="email" type="string">
+            <column name="email" not-null="true"/>
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

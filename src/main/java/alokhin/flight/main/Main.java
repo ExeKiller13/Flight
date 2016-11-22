@@ -4,6 +4,8 @@ import alokhin.flight.database.DataHelper;
 import alokhin.flight.entities.Directories.Aircraft;
 import alokhin.flight.entities.Directories.Place;
 import alokhin.flight.entities.Objects.Flight;
+import alokhin.flight.entities.Objects.Passenger;
+import alokhin.flight.entities.Objects.Reservation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,13 @@ public class Main {
 //                DataHelper.getInstance().getCityById(3L),
 //                DataHelper.getInstance().getCityById(2L))).get(0).getDuration());
 
-//        System.out.println(DataHelper.getInstance().getAllCities());
+
+        System.out.println(DataHelper.getInstance().getAllReservations());
+
+//        System.out.println(DataHelper.getInstance().;
+        System.out.println(DataHelper.getInstance().getReservationsByDocumentNumber("AG2131"));
+
+        System.out.println("Rsult : " + DataHelper.getInstance().getReservationsByFamilyName("Alokhin"));
         DataHelper.closeTransaction();
 
     }

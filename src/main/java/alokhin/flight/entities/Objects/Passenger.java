@@ -4,7 +4,7 @@ package alokhin.flight.entities.Objects;
  * Created by ExeKiller on 14.11.2016.
  */
 public class Passenger {
-    private long id;
+    private Long id;
     private String givenName;
     private String middleName;
     private String familyName;
@@ -12,11 +12,11 @@ public class Passenger {
     private String email;
     private String phone;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -75,7 +75,7 @@ public class Passenger {
 
         Passenger passenger = (Passenger) o;
 
-        if (id != passenger.id) return false;
+        if (id.equals(passenger.id)) return false;
         if (givenName != null ? !givenName.equals(passenger.givenName) : passenger.givenName != null) return false;
         if (middleName != null ? !middleName.equals(passenger.middleName) : passenger.middleName != null) return false;
         if (familyName != null ? !familyName.equals(passenger.familyName) : passenger.familyName != null) return false;
@@ -89,7 +89,7 @@ public class Passenger {
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
+        int result = id.hashCode();
         result = 31 * result + (givenName != null ? givenName.hashCode() : 0);
         result = 31 * result + (middleName != null ? middleName.hashCode() : 0);
         result = 31 * result + (familyName != null ? familyName.hashCode() : 0);
