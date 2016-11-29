@@ -18,5 +18,7 @@
         <many-to-one class="alokhin.flight.entities.Directories.FlightClass" fetch="join" name="flightClass" lazy="false">
             <column name="flight_class_id" not-null="true"/>
         </many-to-one>
+
+        <!--<property name="busy" type="java.lang.Integer"/>-->
     </class>
 </hibernate-mapping>

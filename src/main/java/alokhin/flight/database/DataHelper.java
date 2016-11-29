@@ -4,6 +4,7 @@ import alokhin.flight.entities.Directories.*;
 import alokhin.flight.entities.Objects.*;
 import alokhin.flight.utils.GMTCalendar;
 import alokhin.flight.utils.HibernateUtil;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
@@ -12,6 +13,7 @@ import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 public class DataHelper {
@@ -205,4 +207,34 @@ public class DataHelper {
                 add(Restrictions.eq("documentNumber", documentNumber)).
                 list();
     }
+
+    public List getPlacesBusy(Long aircraft_id, Long flight_id) {
+        List result = new ArrayList();
+
+        String q = "select p.id, p.row, p.seat,p.flightClass.id, " +
+            "case when ((select r.id from Reservation r where r.flight.id=" + flight_id + " and r.place.id=p.id)>0) then 1 else 0 end as busy " +
+            "from Place p where id in (select place.id from AircraftPlace a1 where a1.aircraft.id=" + aircraft_id + ") order by flightClass.id, row";
+        Query query = getSession().createQuery(q);
+        List list = query.list();
+
+        Iterator iterator = list.iterator();
+        while(iterator.hasNext()) {
+            Object[] objects = (Object[]) iterator.next();
+
+            Place place = new Place();
+
+            place.setId(Long.parseLong(String.valueOf(objects[0]))); // id
+            place.setRow(String.valueOf(objects[1])); // row
+            place.setSeat((Integer) objects[2]); // seat
+
+            Long flightClassId = (Long) objects[3];
+            place.setFlightClass(getFlightClassById(flightClassId)); // flightClass
+
+            place.setBusy((Integer) objects[4]); // busy
+
+            result.add(place);
+        }
+        return result;
+    }
+
 }

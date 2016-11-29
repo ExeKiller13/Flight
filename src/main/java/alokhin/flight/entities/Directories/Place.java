@@ -9,6 +9,8 @@ public class Place {
     private Integer seat;
     private FlightClass flightClass;
 
+    private Integer busy;
+
     public Long getId() {
         return id;
     }
@@ -41,6 +43,14 @@ public class Place {
         this.flightClass = flightClass;
     }
 
+    public Integer getBusy() {
+        return busy;
+    }
+
+    public void setBusy(Integer busy) {
+        this.busy = busy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,6 +60,7 @@ public class Place {
 
         if (id.equals(place.id)) return false;
         if (seat.equals(place.seat)) return false;
+        if (busy == place.busy) return false;
         if (flightClass.equals(place.flightClass)) return false;
         if (row != null ? !row.equals(place.row) : place.row != null) return false;
 
