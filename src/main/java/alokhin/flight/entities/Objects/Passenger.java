@@ -1,8 +1,5 @@
 package alokhin.flight.entities.Objects;
 
-/**
- * Created by ExeKiller on 14.11.2016.
- */
 public class Passenger {
     private Long id;
     private String givenName;

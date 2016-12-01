@@ -67,6 +67,10 @@ public class Reservation {
         this.reserveDatetime = reserveDatetime;
     }
 
+    public void setReserveDatetime(Calendar reserveDatetime) {
+        this.reserveDatetime = reserveDatetime.getTimeInMillis();
+    }
+
     public String getCode() {
         return code;
     }

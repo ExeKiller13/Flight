@@ -6,7 +6,7 @@ import alokhin.flight.entities.Directories.City;
 import java.util.Calendar;
 
 public class Flight {
-    String duration;
+    private String duration;
 
     private Long id;
     private String code;

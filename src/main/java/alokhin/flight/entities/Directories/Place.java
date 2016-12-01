@@ -1,15 +1,12 @@
 package alokhin.flight.entities.Directories;
 
-/**
- * Created by ExeKiller on 14.11.2016.
- */
 public class Place {
     private Long id;
     private String row;
     private Integer seat;
     private FlightClass flightClass;
 
-    private Integer busy;
+    private Boolean busy;
 
     public Long getId() {
         return id;
@@ -43,11 +40,11 @@ public class Place {
         this.flightClass = flightClass;
     }
 
-    public Integer getBusy() {
+    public Boolean getBusy() {
         return busy;
     }
 
-    public void setBusy(Integer busy) {
+    public void setBusy(Boolean busy) {
         this.busy = busy;
     }
 

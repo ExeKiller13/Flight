@@ -22,7 +22,7 @@ public class DataHelper {
     private static SessionFactory sessionFactory = null;
     private static DetachedCriteria currentCriteria;
 
-    public static final int INTERVAL = 1;
+    public static final int INTERVAL = 5;
 
     private DataHelper() {
         sessionFactory = HibernateUtil.getSessionFactory();
@@ -102,7 +102,7 @@ public class DataHelper {
         return getSession().createCriteria(Place.class).add(Restrictions.eq("flightClass.id", id)).list();
     }
 
-    public List getPlacesByAircraftId(long id) {
+    public List getPlacesByAircraftId(Long id) {
         List aircraftPlaces = getSession()
                 .createCriteria(AircraftPlace.class)
                 .add(Restrictions.eq("aircraft.id", id))
@@ -230,7 +230,9 @@ public class DataHelper {
             Long flightClassId = (Long) objects[3];
             place.setFlightClass(getFlightClassById(flightClassId)); // flightClass
 
-            place.setBusy((Integer) objects[4]); // busy
+
+            Integer busy_value = (Integer) objects[4];
+            place.setBusy((busy_value == 1)); // busy
 
             result.add(place);
         }

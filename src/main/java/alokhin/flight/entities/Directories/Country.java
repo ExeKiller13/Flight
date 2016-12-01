@@ -2,9 +2,6 @@ package alokhin.flight.entities.Directories;
 
 import java.util.Arrays;
 
-/**
- * Created by ExeKiller on 14.11.2016.
- */
 public class Country {
     private long id;
     private String name;

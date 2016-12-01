@@ -1,8 +1,5 @@
 package alokhin.flight.entities.Directories;
 
-/**
- * Created by ExeKiller on 14.11.2016.
- */
 public class FlightClass {
     private long id;
     private String name;
