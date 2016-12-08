@@ -23,7 +23,6 @@ public class DataHelper {
     public static final int INTERVAL = 5;
 
     private DataHelper() {
-        System.out.println("asd");
         sessionFactory = HibernateUtil.getSessionFactory();
     }
 

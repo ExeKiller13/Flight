@@ -18,7 +18,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(DataHelper.getInstance());
 
         Search search = new SearchImpl();
         System.out.println(search.getAllCities());

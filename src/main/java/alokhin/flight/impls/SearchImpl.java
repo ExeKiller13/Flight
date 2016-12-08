@@ -12,7 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-//@WebService(serviceName = "FlightService")
+@WebService(serviceName = "FlightService")
 public class SearchImpl implements Search {
 
     public ArrayList<Flight> searchFlight(Long date, City cityFrom, City cityTo) {
