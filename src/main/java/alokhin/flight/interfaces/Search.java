@@ -11,4 +11,5 @@ public interface Search {
 
     ArrayList<Flight> searchFlight(Long date, City cityFrom, City cityTo);
 
+    ArrayList<City> getAllCities();
 }

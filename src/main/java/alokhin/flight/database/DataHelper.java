@@ -7,7 +7,6 @@ import alokhin.flight.utils.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
@@ -20,11 +19,11 @@ public class DataHelper {
     private static DataHelper dataHelper;
 
     private static SessionFactory sessionFactory = null;
-    private static DetachedCriteria currentCriteria;
 
     public static final int INTERVAL = 5;
 
     private DataHelper() {
+        System.out.println("asd");
         sessionFactory = HibernateUtil.getSessionFactory();
     }
 

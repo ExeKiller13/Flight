@@ -41,6 +41,8 @@ public class BuyImpl implements Buy {
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            DataHelper.closeTransaction();
         }
 
         return false;

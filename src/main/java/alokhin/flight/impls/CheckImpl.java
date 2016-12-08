@@ -14,6 +14,8 @@ public class CheckImpl implements Check {
             reservation = DataHelper.getInstance().getReservationByCode(code);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            DataHelper.closeTransaction();
         }
         return reservation;
     }
@@ -24,6 +26,8 @@ public class CheckImpl implements Check {
             reservations = (ArrayList<Reservation>) DataHelper.getInstance().getReservationsByDocumentNumber(documentNumber);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            DataHelper.closeTransaction();
         }
         return reservations;
     }
@@ -34,6 +38,8 @@ public class CheckImpl implements Check {
             reservations = (ArrayList<Reservation>) DataHelper.getInstance().getReservationsByDate(date);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            DataHelper.closeTransaction();
         }
         return reservations;
     }
@@ -44,6 +50,8 @@ public class CheckImpl implements Check {
             reservations = (ArrayList<Reservation>) DataHelper.getInstance().getReservationsByFamilyName(familyName);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            DataHelper.closeTransaction();
         }
         return reservations;
     }

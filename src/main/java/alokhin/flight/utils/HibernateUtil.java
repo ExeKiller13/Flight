@@ -1,39 +1,29 @@
 package alokhin.flight.utils;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
 
+/**
+ * Created by ExeKiller on 04.10.2016.
+ */
 public class HibernateUtil {
-    private static SessionFactory sessionFactory = buildSessionFactory();
+    private static final SessionFactory sessionFactory = buildSessionFactory();
 
-    protected static SessionFactory buildSessionFactory() {
-        // A SessionFactory is set up once for an application!
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure() // configures settings from hibernate.cfg.xml
-                .build();
+    private static SessionFactory buildSessionFactory() {
         try {
-            sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
+            Configuration configuration = new Configuration();
+            configuration.configure();
+            ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+            return configuration.buildSessionFactory(serviceRegistry);
+        } catch (Throwable e) {
+            System.err.println("Initial SessionFactory creation failed." + e);
+            throw new ExceptionInInitializerError(e);
         }
-        catch (Exception e) {
-            // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
-            // so destroy it manually.
-            StandardServiceRegistryBuilder.destroy( registry );
-
-            throw new ExceptionInInitializerError("Initial SessionFactory failed" + e);
-        }
-        return sessionFactory;
     }
-
 
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-
-    public static void shutdown() {
-        // Close caches and connection pools
-        getSessionFactory().close();
-    }
-
 }
