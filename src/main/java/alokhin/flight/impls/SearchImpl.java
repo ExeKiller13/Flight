@@ -2,6 +2,7 @@ package alokhin.flight.impls;
 
 import alokhin.flight.database.DataHelper;
 import alokhin.flight.entities.Directories.City;
+import alokhin.flight.entities.Directories.Place;
 import alokhin.flight.entities.Objects.Flight;
 import alokhin.flight.interfaces.Search;
 import alokhin.flight.utils.GMTCalendar;
@@ -34,6 +35,14 @@ public class SearchImpl implements Search {
     public ArrayList<City> getAllCities() {
         try {
             return (ArrayList<City>) DataHelper.getInstance().getAllCities();
+        } finally {
+            DataHelper.closeTransaction();
+        }
+    }
+
+    public ArrayList<Place> getPlaces(Long aircraft_id, Long flight_id) {
+        try {
+            return (ArrayList<Place>) DataHelper.getInstance().getPlacesBusy(aircraft_id, flight_id);
         } finally {
             DataHelper.closeTransaction();
         }

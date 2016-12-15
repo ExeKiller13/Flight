@@ -19,8 +19,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        Search search = new SearchImpl();
-        System.out.println(search.getAllCities());
+
 //        ArrayList<Flight> flights = search.searchFlight(1479591900000L, DataHelper.getInstance().getCityById(1L), DataHelper.getInstance().getCityById(2L));
 //        System.out.println(flights);
 //        for(Flight f : flights) {
@@ -43,7 +42,17 @@ public class Main {
 //            DataHelper.closeTransaction();
 //        }
 //
+        List places = DataHelper.getInstance().getPlacesBusy(1L, 2L);
 
+        for(Object o : places) {
+
+            Place p = (Place) o;
+            System.out.println(p.getId());
+            System.out.println(p.getRow());
+            System.out.println(p.getSeat());
+            System.out.println(p.getFlightClass().getName());
+            System.out.println(p.getBusy());
+        }
 //        Check check = new CheckImpl();
 //        Reservation r1 = check.checkReservationByCode("87d6ab68-d143-41f7-a68f-65f8a41703af");
 //        ArrayList<Reservation> r2 = check.checkReservationByDateReserv(1480502968488L);
