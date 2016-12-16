@@ -28,12 +28,13 @@ public class DataHelper {
 
     public static DataHelper getInstance() {
         if(dataHelper == null) {
-            DataHelper dataHelper = new DataHelper();
-            getSession().beginTransaction();
-            return dataHelper;
+            dataHelper = new DataHelper();
         }
-        else
-            return dataHelper;
+        if(!getSession().getTransaction().isActive()) {
+            getSession().beginTransaction();
+        }
+
+        return dataHelper;
     }
 
     private static Session getSession() {

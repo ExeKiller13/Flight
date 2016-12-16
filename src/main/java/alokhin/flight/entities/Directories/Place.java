@@ -72,4 +72,9 @@ public class Place {
         result = 31 * result + flightClass.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return row + seat + " (" + flightClass.getName() + ")";
+    }
 }

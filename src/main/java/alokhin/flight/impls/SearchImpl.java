@@ -13,7 +13,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-@WebService(serviceName = "FlightService")
 public class SearchImpl implements Search {
 
     public ArrayList<Flight> searchFlight(Long date, City cityFrom, City cityTo) {
@@ -40,12 +39,27 @@ public class SearchImpl implements Search {
         }
     }
 
-    public ArrayList<Place> getPlaces(Long aircraft_id, Long flight_id) {
+    public ArrayList<Place> getPlacesBusy(Long aircraft_id, Long flight_id) {
         try {
             return (ArrayList<Place>) DataHelper.getInstance().getPlacesBusy(aircraft_id, flight_id);
         } finally {
+
             DataHelper.closeTransaction();
         }
+    }
+
+    public ArrayList<Place> getFreePlaces(Long aircraft_id, Long flight_id) {
+        ArrayList<Place> places = getPlacesBusy(aircraft_id, flight_id);
+
+        ArrayList<Place> freePlaces = new ArrayList<Place>();
+
+        for(Place place : places) {
+            if(!place.getBusy()) {
+                freePlaces.add(place);
+            }
+        }
+
+        return freePlaces;
     }
 
 }

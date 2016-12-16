@@ -4,6 +4,7 @@ import alokhin.flight.database.DataHelper;
 import alokhin.flight.entities.Objects.Reservation;
 import alokhin.flight.interfaces.Check;
 
+import javax.jws.WebService;
 import java.util.ArrayList;
 
 public class CheckImpl implements Check {

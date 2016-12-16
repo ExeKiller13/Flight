@@ -8,6 +8,7 @@ import alokhin.flight.entities.Objects.Reservation;
 import alokhin.flight.interfaces.Buy;
 import alokhin.flight.utils.GMTCalendar;
 
+import javax.jws.WebService;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,6 +26,10 @@ public class BuyImpl implements Buy {
                 if(p.getId().equals(place.getId()) && p.getBusy()) {
                     throw new Exception("Place is busy.");
                 }
+            }
+
+            if(DataHelper.getInstance().getPassengerById(passenger.getId()) == null) {
+                DataHelper.getInstance().insertPassenger(passenger);
             }
 
             Reservation reservation = new Reservation();
