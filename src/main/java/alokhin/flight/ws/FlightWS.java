@@ -54,7 +54,7 @@ public class FlightWS implements Search, Buy, Check {
         return searchImpl.getFreePlaces(aircraft_id, flight_id);
     }
 
-    public Boolean buyTicket(Flight flight, Place place, Passenger passenger, String addInfo) {
+    public Integer buyTicket(Flight flight, Place place, Passenger passenger, String addInfo) {
         return buyImpl.buyTicket(flight, place, passenger, addInfo);
     }
 }

@@ -42,7 +42,9 @@ public class DataHelper {
     }
 
     public static void closeTransaction() {
-        getSession().getTransaction().commit();
+        if(getSession().getTransaction().isActive()) {
+            getSession().getTransaction().commit();
+        }
     }
 
     public List getAllAircrafts() {
@@ -158,8 +160,20 @@ public class DataHelper {
         return (Passenger) getSession().createCriteria(Passenger.class).add(Restrictions.eq("id", id)).uniqueResult();
     }
 
-    public void insertPassenger(Passenger passenger) {
-        getSession().save(passenger);
+    public Passenger getPassengerByDocumentNumber(String documentNumber) {
+        return (Passenger) getSession().createCriteria(Passenger.class).add(Restrictions.eq("documentNumber", documentNumber)).uniqueResult();
+    }
+
+    public Passenger insertPassenger(Passenger passenger) {
+
+        Passenger this_passenger = getPassengerByDocumentNumber(passenger.getDocumentNumber());
+        if(this_passenger == null) {
+            getSession().save(passenger);
+            return passenger;
+        } else {
+            System.out.println("Passenger with document number: " + passenger.getDocumentNumber() + " exists.");
+            return this_passenger;
+        }
     }
 
     public List getAllReservations() {

@@ -7,6 +7,6 @@ import alokhin.flight.entities.Objects.Reservation;
 
 public interface Buy {
 
-    Boolean buyTicket(Flight flight, Place place, Passenger passenger, String addInfo);
+    Integer buyTicket(Flight flight, Place place, Passenger passenger, String addInfo);
 
 }

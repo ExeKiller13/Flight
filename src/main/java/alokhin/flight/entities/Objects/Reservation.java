@@ -108,4 +108,9 @@ public class Reservation {
         result = 31 * result + (code != null ? code.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return id + " " + flight.getCode() + " " + passenger.getDocumentNumber() + " " + place;
+    }
 }

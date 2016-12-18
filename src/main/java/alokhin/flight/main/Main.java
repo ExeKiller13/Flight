@@ -44,23 +44,19 @@ public class Main {
 //        System.out.println(DataHelper.getInstance());
 //        System.out.println(DataHelper.getInstance());
 
-//        Buy buy = new BuyImpl();
-//        Passenger passenger = new Passenger();
-//        passenger.setGivenName("as");
-//        passenger.setMiddleName("qwe");
-//        passenger.setFamilyName("qtwerwe");
-//        passenger.setEmail("exekiller@gmaicl.com");
-//        passenger.setPhone("09537231");
-//        passenger.setDocumentNumber("234234");
-//
-//        if(buy.buyTicket(DataHelper.getInstance().getFlightById(3L), DataHelper.getInstance().getPlaceById(1L),
-//                passenger, " fa fa fa")) {
-//            System.out.println("Transaction successful.");
-//        } else {
-//            System.out.println("Transaction failed");
-//            DataHelper.closeTransaction();
-//        }
+        Buy buy = new BuyImpl();
+        Passenger passenger = new Passenger();
+        passenger.setGivenName("Senya");
+        passenger.setMiddleName("Vos");
+        passenger.setFamilyName("Kamt");
+        passenger.setEmail("exekillefsdr@gmaicl.com");
+        passenger.setPhone("09537231");
+        passenger.setDocumentNumber("SP-543-53");
 
+        Integer stage = buy.buyTicket(DataHelper.getInstance().getFlightById(5L), DataHelper.getInstance().getPlaceById(9L),
+                passenger, "asvds");
+            System.out.println(stage);
+DataHelper.closeTransaction();
 //        List places = DataHelper.getInstance().getPlacesBusy(1L, 2L);
 //
 //        for(Object o : places) {
