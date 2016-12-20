@@ -85,7 +85,7 @@ public class Flight {
     }
 
     public String getDuration() {
-        if(duration == null) {
+        if (duration == null) {
             fillDuration();
         }
         return duration;
@@ -106,19 +106,19 @@ public class Flight {
         long diff = getDateCome() - getDateDepart();
         int diffmin = (int) (diff / (60 * 1000));
 
-        int num_hours = (diffmin - (diffmin%60))/60;
-        int num_minutes = (diffmin%60);
-        int num_days = (num_hours - (num_hours%24))/24;
+        int num_hours = (diffmin - (diffmin % 60)) / 60;
+        int num_minutes = (diffmin % 60);
+        int num_days = (num_hours - (num_hours % 24)) / 24;
 
-        num_hours = (num_hours%24);
+        num_hours = (num_hours % 24);
 
-        if(num_days > 0) {
+        if (num_days > 0) {
             resultString.append(num_days + DAY);
         }
-        if(num_hours > 0) {
+        if (num_hours > 0) {
             resultString.append(num_hours + HOUR);
         }
-        if(num_minutes > 0) {
+        if (num_minutes > 0) {
             resultString.append(num_minutes + MIN);
         }
 

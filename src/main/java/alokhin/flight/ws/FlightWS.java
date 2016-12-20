@@ -30,16 +30,16 @@ public class FlightWS implements Search, Buy, Check {
         return checkImpl.checkReservationByDocumentNumber(documentNumber);
     }
 
-    public ArrayList<Reservation> checkReservationByDateReserv(Long date) {
-        return checkImpl.checkReservationByDateReserv(date);
+    public ArrayList<Reservation> checkReservationByDateReserv(Long date, Integer interval) {
+        return checkImpl.checkReservationByDateReserv(date, interval);
     }
 
     public ArrayList<Reservation> checkReservationByFamilyName(String familyName) {
         return checkImpl.checkReservationByFamilyName(familyName);
     }
 
-    public ArrayList<Flight> searchFlight(Long date, City cityFrom, City cityTo) {
-        return searchImpl.searchFlight(date, cityFrom, cityTo);
+    public ArrayList<Flight> searchFlight(Long date, City cityFrom, City cityTo, Integer interval) {
+        return searchImpl.searchFlight(date, cityFrom, cityTo, interval);
     }
 
     public ArrayList<City> getAllCities() {

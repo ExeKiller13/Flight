@@ -36,9 +36,9 @@ public class Main {
 //            System.out.println("----");
 //        }
 
-       // System.out.println(DataHelper.getInstance().getFlightById(3L));
-       // System.out.println(DataHelper.getInstance().getPlaceById(1L));
-       // System.out.println(DataHelper.getInstance().getPassengerById(5L));
+        // System.out.println(DataHelper.getInstance().getFlightById(3L));
+        // System.out.println(DataHelper.getInstance().getPlaceById(1L));
+        // System.out.println(DataHelper.getInstance().getPassengerById(5L));
 
 //        System.out.println(search.getAllCities());
 //        System.out.println(DataHelper.getInstance());
@@ -55,8 +55,8 @@ public class Main {
 
         Integer stage = buy.buyTicket(DataHelper.getInstance().getFlightById(5L), DataHelper.getInstance().getPlaceById(9L),
                 passenger, "asvds");
-            System.out.println(stage);
-DataHelper.closeTransaction();
+        System.out.println(stage);
+        DataHelper.closeTransaction();
 //        List places = DataHelper.getInstance().getPlacesBusy(1L, 2L);
 //
 //        for(Object o : places) {

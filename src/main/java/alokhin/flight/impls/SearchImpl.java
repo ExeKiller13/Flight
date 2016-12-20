@@ -15,7 +15,7 @@ import java.util.List;
 
 public class SearchImpl implements Search {
 
-    public ArrayList<Flight> searchFlight(Long date, City cityFrom, City cityTo) {
+    public ArrayList<Flight> searchFlight(Long date, City cityFrom, City cityTo, Integer interval) {
 
         try {
             ArrayList<Flight> list = new ArrayList<Flight>();
@@ -23,7 +23,7 @@ public class SearchImpl implements Search {
             Calendar c = GMTCalendar.getInstance();
             c.setTimeInMillis(date);
 
-            list.addAll(DataHelper.getInstance().getFlight(date, cityFrom, cityTo));
+            list.addAll(DataHelper.getInstance().getFlight(date, cityFrom, cityTo, interval));
 
             return list;
         } finally {
@@ -53,8 +53,8 @@ public class SearchImpl implements Search {
 
         ArrayList<Place> freePlaces = new ArrayList<Place>();
 
-        for(Place place : places) {
-            if(!place.getBusy()) {
+        for (Place place : places) {
+            if (!place.getBusy()) {
                 freePlaces.add(place);
             }
         }

@@ -22,16 +22,16 @@ public class BuyImpl implements Buy {
         try {
             List places = DataHelper.getInstance().getPlacesBusy(flight.getAircraft().getId(), flight.getId());
 
-            for(Object o : places) {
+            for (Object o : places) {
 
                 Place p = (Place) o;
 
-                if(p.getId().equals(place.getId()) && p.getBusy()) {
+                if (p.getId().equals(place.getId()) && p.getBusy()) {
                     throw new PlaceBusyException("Place is busy.");
                 }
             }
 
-            if(DataHelper.getInstance().getPassengerById(passenger.getId()) == null) {
+            if (DataHelper.getInstance().getPassengerById(passenger.getId()) == null) {
                 passenger = DataHelper.getInstance().insertPassenger(passenger);
             }
 
@@ -44,8 +44,8 @@ public class BuyImpl implements Buy {
             reservation.setReserveDatetime(GMTCalendar.getInstance());
 
             ArrayList<Reservation> reservations_by_passenger = (ArrayList<Reservation>) DataHelper.getInstance().getReservationsByDocumentNumber(passenger.getDocumentNumber());
-            for(Reservation r : reservations_by_passenger) {
-                if(r.getFlight().getId().equals(flight.getId())) {
+            for (Reservation r : reservations_by_passenger) {
+                if (r.getFlight().getId().equals(flight.getId())) {
                     throw new DoubleTransactionException("Transaction failure. This passenger reserved this ticket recently.");
                 }
             }

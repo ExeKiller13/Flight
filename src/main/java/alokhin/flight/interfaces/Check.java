@@ -10,7 +10,7 @@ public interface Check {
 
     ArrayList<Reservation> checkReservationByDocumentNumber(String documentNumber);
 
-    ArrayList<Reservation> checkReservationByDateReserv(Long date);
+    ArrayList<Reservation> checkReservationByDateReserv(Long date, Integer interval);
 
     ArrayList<Reservation> checkReservationByFamilyName(String familyName);
 

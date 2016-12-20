@@ -18,7 +18,7 @@ public class GMTCalendar {
         int minute = c.get(Calendar.MINUTE);
         int hour = c.get(Calendar.HOUR);
 
-        System.out.println("Current date is  " + day + "/" + month + "/" + year+"  "+hour + " : " + minute);
+        System.out.println("Current date is  " + day + "/" + month + "/" + year + "  " + hour + " : " + minute);
     }
 
     public static void clearTime(Calendar c) {

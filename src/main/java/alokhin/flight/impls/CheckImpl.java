@@ -33,10 +33,10 @@ public class CheckImpl implements Check {
         return reservations;
     }
 
-    public ArrayList<Reservation> checkReservationByDateReserv(Long date) {
+    public ArrayList<Reservation> checkReservationByDateReserv(Long date, Integer interval) {
         ArrayList<Reservation> reservations = null;
         try {
-            reservations = (ArrayList<Reservation>) DataHelper.getInstance().getReservationsByDate(date);
+            reservations = (ArrayList<Reservation>) DataHelper.getInstance().getReservationsByDate(date, interval);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
