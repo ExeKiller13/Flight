@@ -11,12 +11,17 @@ import alokhin.flight.impls.SearchImpl;
 import alokhin.flight.interfaces.Buy;
 import alokhin.flight.interfaces.Check;
 import alokhin.flight.interfaces.Search;
+import alokhin.flight.sei.FlightSEI;
 
 import javax.jws.WebService;
+import javax.xml.ws.soap.MTOM;
 import java.util.ArrayList;
 
-@WebService(serviceName = "FlightService")
-public class FlightWS implements Search, Buy, Check {
+@MTOM
+@WebService(endpointInterface = "alokhin.flight.sei.FlightSEI")
+//@HandlerChain(file = "FlightWSHandler.xml")
+//@BindingType(SOAPBinding.SOAP12HTTP_MTOM_BINDING)
+public class FlightWS implements FlightSEI {
 
     private Search searchImpl = new SearchImpl();
     private Buy buyImpl = new BuyImpl();
