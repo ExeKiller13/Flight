@@ -31,14 +31,24 @@ public class AircraftPlace {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         AircraftPlace that = (AircraftPlace) o;
 
-        if (id.equals(that.id)) return false;
-        if (aircraft.equals(that.aircraft)) return false;
-        if (place.equals(that.place)) return false;
+        if (id.equals(that.id)) {
+            return false;
+        }
+        if (aircraft.equals(that.aircraft)) {
+            return false;
+        }
+        if (place.equals(that.place)) {
+            return false;
+        }
 
         return true;
     }

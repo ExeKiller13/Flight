@@ -5,8 +5,6 @@ import alokhin.flight.entities.Directories.Place;
 import alokhin.flight.entities.Objects.Flight;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public interface Search {
 

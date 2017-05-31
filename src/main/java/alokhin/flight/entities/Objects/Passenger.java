@@ -67,19 +67,36 @@ public class Passenger {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Passenger passenger = (Passenger) o;
 
-        if (id.equals(passenger.id)) return false;
-        if (givenName != null ? !givenName.equals(passenger.givenName) : passenger.givenName != null) return false;
-        if (middleName != null ? !middleName.equals(passenger.middleName) : passenger.middleName != null) return false;
-        if (familyName != null ? !familyName.equals(passenger.familyName) : passenger.familyName != null) return false;
-        if (documentNumber != null ? !documentNumber.equals(passenger.documentNumber) : passenger.documentNumber != null)
+        if (id.equals(passenger.id)) {
             return false;
-        if (email != null ? !email.equals(passenger.email) : passenger.email != null) return false;
-        if (phone != null ? !phone.equals(passenger.phone) : passenger.phone != null) return false;
+        }
+        if (givenName != null ? !givenName.equals(passenger.givenName) : passenger.givenName != null) {
+            return false;
+        }
+        if (middleName != null ? !middleName.equals(passenger.middleName) : passenger.middleName != null) {
+            return false;
+        }
+        if (familyName != null ? !familyName.equals(passenger.familyName) : passenger.familyName != null) {
+            return false;
+        }
+        if (documentNumber != null ? !documentNumber.equals(passenger.documentNumber) : passenger.documentNumber != null) {
+            return false;
+        }
+        if (email != null ? !email.equals(passenger.email) : passenger.email != null) {
+            return false;
+        }
+        if (phone != null ? !phone.equals(passenger.phone) : passenger.phone != null) {
+            return false;
+        }
 
         return true;
     }

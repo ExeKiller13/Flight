@@ -51,16 +51,30 @@ public class Country {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Country that = (Country) o;
 
-        if (id != that.id) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (code != null ? !code.equals(that.code) : that.code != null) return false;
-        if (!Arrays.equals(flag, that.flag)) return false;
-        if (desc != null ? !desc.equals(that.desc) : that.desc != null) return false;
+        if (id != that.id) {
+            return false;
+        }
+        if (name != null ? !name.equals(that.name) : that.name != null) {
+            return false;
+        }
+        if (code != null ? !code.equals(that.code) : that.code != null) {
+            return false;
+        }
+        if (!Arrays.equals(flag, that.flag)) {
+            return false;
+        }
+        if (desc != null ? !desc.equals(that.desc) : that.desc != null) {
+            return false;
+        }
 
         return true;
     }

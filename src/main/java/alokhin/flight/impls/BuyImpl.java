@@ -10,7 +10,6 @@ import alokhin.flight.exceptions.PlaceBusyException;
 import alokhin.flight.interfaces.Buy;
 import alokhin.flight.utils.GMTCalendar;
 
-import javax.jws.WebService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

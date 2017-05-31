@@ -127,18 +127,36 @@ public class Flight {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Flight flight = (Flight) o;
 
-        if (id.equals(flight.id)) return false;
-        if (dateDepart.equals(flight.dateDepart)) return false;
-        if (dateCome.equals(flight.dateCome)) return false;
-        if (aircraft.equals(flight.aircraft)) return false;
-        if (cityFrom.equals(flight.cityFrom)) return false;
-        if (cityTo.equals(flight.cityTo)) return false;
-        if (code != null ? !code.equals(flight.code) : flight.code != null) return false;
+        if (id.equals(flight.id)) {
+            return false;
+        }
+        if (dateDepart.equals(flight.dateDepart)) {
+            return false;
+        }
+        if (dateCome.equals(flight.dateCome)) {
+            return false;
+        }
+        if (aircraft.equals(flight.aircraft)) {
+            return false;
+        }
+        if (cityFrom.equals(flight.cityFrom)) {
+            return false;
+        }
+        if (cityTo.equals(flight.cityTo)) {
+            return false;
+        }
+        if (code != null ? !code.equals(flight.code) : flight.code != null) {
+            return false;
+        }
 
         return true;
     }

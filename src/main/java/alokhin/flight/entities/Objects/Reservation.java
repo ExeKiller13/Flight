@@ -81,18 +81,36 @@ public class Reservation {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Reservation that = (Reservation) o;
 
-        if (id.equals(that.id)) return false;
-        if (flight.equals(that.flight)) return false;
-        if (passenger.equals(that.passenger)) return false;
-        if (place.equals(that.place)) return false;
-        if (reserveDatetime.equals(that.reserveDatetime)) return false;
-        if (addInfo != null ? !addInfo.equals(that.addInfo) : that.addInfo != null) return false;
-        if (code != null ? !code.equals(that.code) : that.code != null) return false;
+        if (id.equals(that.id)) {
+            return false;
+        }
+        if (flight.equals(that.flight)) {
+            return false;
+        }
+        if (passenger.equals(that.passenger)) {
+            return false;
+        }
+        if (place.equals(that.place)) {
+            return false;
+        }
+        if (reserveDatetime.equals(that.reserveDatetime)) {
+            return false;
+        }
+        if (addInfo != null ? !addInfo.equals(that.addInfo) : that.addInfo != null) {
+            return false;
+        }
+        if (code != null ? !code.equals(that.code) : that.code != null) {
+            return false;
+        }
 
         return true;
     }

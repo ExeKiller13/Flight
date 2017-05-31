@@ -50,16 +50,30 @@ public class Place {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Place place = (Place) o;
 
-        if (id.equals(place.id)) return false;
-        if (seat.equals(place.seat)) return false;
-        if (busy == place.busy) return false;
-        if (flightClass.equals(place.flightClass)) return false;
-        if (row != null ? !row.equals(place.row) : place.row != null) return false;
+        if (id.equals(place.id)) {
+            return false;
+        }
+        if (seat.equals(place.seat)) {
+            return false;
+        }
+        if (busy == place.busy) {
+            return false;
+        }
+        if (flightClass.equals(place.flightClass)) {
+            return false;
+        }
+        if (row != null ? !row.equals(place.row) : place.row != null) {
+            return false;
+        }
 
         return true;
     }

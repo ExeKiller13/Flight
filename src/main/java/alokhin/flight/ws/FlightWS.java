@@ -18,7 +18,7 @@ import javax.xml.ws.soap.MTOM;
 import java.util.ArrayList;
 
 @MTOM
-@WebService(endpointInterface = "alokhin.flight.sei.FlightSEI")
+@WebService (endpointInterface = "alokhin.flight.sei.FlightSEI")
 //@HandlerChain(file = "FlightWSHandler.xml")
 //@BindingType(SOAPBinding.SOAP12HTTP_MTOM_BINDING)
 public class FlightWS implements FlightSEI {

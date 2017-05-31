@@ -40,15 +40,27 @@ public class Aircraft {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Aircraft that = (Aircraft) o;
 
-        if (id.equals(that.id)) return false;
-        if (company.equals(that.company)) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (desc != null ? !desc.equals(that.desc) : that.desc != null) return false;
+        if (id.equals(that.id)) {
+            return false;
+        }
+        if (company.equals(that.company)) {
+            return false;
+        }
+        if (name != null ? !name.equals(that.name) : that.name != null) {
+            return false;
+        }
+        if (desc != null ? !desc.equals(that.desc) : that.desc != null) {
+            return false;
+        }
 
         return true;
     }

@@ -49,16 +49,30 @@ public class City {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         City city = (City) o;
 
-        if (id.equals(city.id)) return false;
-        if (country.equals(city.country)) return false;
-        if (name != null ? !name.equals(city.name) : city.name != null) return false;
-        if (code != null ? !code.equals(city.code) : city.code != null) return false;
-        if (desc != null ? !desc.equals(city.desc) : city.desc != null) return false;
+        if (id.equals(city.id)) {
+            return false;
+        }
+        if (country.equals(city.country)) {
+            return false;
+        }
+        if (name != null ? !name.equals(city.name) : city.name != null) {
+            return false;
+        }
+        if (code != null ? !code.equals(city.code) : city.code != null) {
+            return false;
+        }
+        if (desc != null ? !desc.equals(city.desc) : city.desc != null) {
+            return false;
+        }
 
         return true;
     }

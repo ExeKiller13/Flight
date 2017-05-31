@@ -103,9 +103,9 @@ public class DataHelper {
 
     public List getPlacesByAircraftId(Long id) {
         List aircraftPlaces = getSession()
-                .createCriteria(AircraftPlace.class)
-                .add(Restrictions.eq("aircraft.id", id))
-                .list();
+            .createCriteria(AircraftPlace.class)
+            .add(Restrictions.eq("aircraft.id", id))
+            .list();
 
         List places_id = new ArrayList<Long>();
         for (Object o : aircraftPlaces) {
@@ -113,14 +113,12 @@ public class DataHelper {
             places_id.add(aircraftPlace.getPlace().getId());
         }
 
-
         return getSession()
-                .createCriteria(Place.class)
-                .add(Restrictions.in("id", places_id))
-                .addOrder(Order.asc("flightClass.id"))
-                .addOrder(Order.asc("row")).list();
+            .createCriteria(Place.class)
+            .add(Restrictions.in("id", places_id))
+            .addOrder(Order.asc("flightClass.id"))
+            .addOrder(Order.asc("row")).list();
     }
-
 
     public List getAllFlights() {
         return getSession().createCriteria(Flight.class).list();
@@ -129,7 +127,6 @@ public class DataHelper {
     public Flight getFlightById(Long id) {
         return (Flight) getSession().createCriteria(Flight.class).add(Restrictions.eq("id", id)).uniqueResult();
     }
-
 
     public List getFlight(Long dateTime, City cityFrom, City cityTo, Integer interval) {
 
@@ -144,10 +141,11 @@ public class DataHelper {
         GMTCalendar.print(dateTimeInterval);
 
         return getSession().createCriteria(Flight.class)
-                .add(Restrictions.and(Restrictions.ge("dateDepart", searchDate.getTimeInMillis()), Restrictions.lt("dateCome", dateTimeInterval.getTimeInMillis())))
-                .add(Restrictions.eq("cityFrom", cityFrom))
-                .add(Restrictions.eq("cityTo", cityTo))
-                .list();
+                           .add(Restrictions.and(Restrictions.ge("dateDepart", searchDate.getTimeInMillis()),
+                                                 Restrictions.lt("dateCome", dateTimeInterval.getTimeInMillis())))
+                           .add(Restrictions.eq("cityFrom", cityFrom))
+                           .add(Restrictions.eq("cityTo", cityTo))
+                           .list();
     }
 
     public List getAllPassengers() {
@@ -188,9 +186,9 @@ public class DataHelper {
 
     public List getReservationsByFamilyName(String familyName) {
         return getSession().createCriteria(Reservation.class).
-                createCriteria("passenger").
-                add(Restrictions.eq("familyName", familyName)).
-                list();
+            createCriteria("passenger").
+                               add(Restrictions.eq("familyName", familyName)).
+                               list();
     }
 
     public Reservation getReservationByCode(String code) {
@@ -205,26 +203,26 @@ public class DataHelper {
         dateTimeInterval.add(Calendar.DATE, interval);
 
         return getSession().createCriteria(Reservation.class).add(
-                Restrictions.and(
-                        Restrictions.ge("reserveDatetime", reservationDate.getTimeInMillis()),
-                        Restrictions.lt("reserveDatetime", dateTimeInterval.getTimeInMillis())
-                )
+            Restrictions.and(
+                Restrictions.ge("reserveDatetime", reservationDate.getTimeInMillis()),
+                Restrictions.lt("reserveDatetime", dateTimeInterval.getTimeInMillis())
+            )
         ).list();
     }
 
     public List getReservationsByDocumentNumber(String documentNumber) {
         return getSession().createCriteria(Reservation.class).
-                createCriteria("passenger").
-                add(Restrictions.eq("documentNumber", documentNumber)).
-                list();
+            createCriteria("passenger").
+                               add(Restrictions.eq("documentNumber", documentNumber)).
+                               list();
     }
 
     public List getPlacesBusy(Long aircraft_id, Long flight_id) {
         List result = new ArrayList();
 
         String q = "select p.id, p.row, p.seat,p.flightClass.id, " +
-                "case when ((select r.id from Reservation r where r.flight.id=" + flight_id + " and r.place.id=p.id)>0) then 1 else 0 end as busy " +
-                "from Place p where id in (select place.id from AircraftPlace a1 where a1.aircraft.id=" + aircraft_id + ") order by flightClass.id, row";
+                   "case when ((select r.id from Reservation r where r.flight.id=" + flight_id + " and r.place.id=p.id)>0) then 1 else 0 end as busy " +
+                   "from Place p where id in (select place.id from AircraftPlace a1 where a1.aircraft.id=" + aircraft_id + ") order by flightClass.id, row";
         Query query = getSession().createQuery(q);
         List list = query.list();
 
@@ -240,7 +238,6 @@ public class DataHelper {
 
             Long flightClassId = (Long) objects[3];
             place.setFlightClass(getFlightClassById(flightClassId)); // flightClass
-
 
             Integer busy_value = (Integer) objects[4];
             place.setBusy((busy_value == 1)); // busy
